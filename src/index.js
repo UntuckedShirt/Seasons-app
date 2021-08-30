@@ -19,7 +19,7 @@ class App extends React.Component {
         super(props);
         // THIS IS THE ONLY TIME we do direct assignment
         //to this.state
-        this.state = { lat: null };
+        this.state = { lat: null, errorMessage: ''};
          //calling back to geo location API
          window.navigator.geolocation.getCurrentPosition(
             //to get reposnse or nformation we need fucntion callback x2
@@ -28,24 +28,33 @@ class App extends React.Component {
                  // we did not and do not do this
                  //this.state.lat = postion.cords.latitude
              }, //first callback/argument known as success callback
-            err => console.log(err)// second callback/argument for error
+             err => {
+                 this.setState({ errorMessage: err.message });
+            }// second callback/argument for error
         );
     }
 
     // react says we have to define render!!
     render() {
-           
-        return <div>Latitude: {this.state.lat}</div>
-
+            //remember to remove semecolons when going from single to multiline statement
+            // to conditionally return JSX we need to add simple if statemnts
+            // below is called conidtional rendering
+        if (this.state.errorMessage && !this.state.lat) {
+          return <div>Error: {this.state.errorMessage}</div>;
+        }
+    
+        if (!this.state.errorMessage && this.state.lat) {
+          return <div>Latitude: {this.state.lat}</div>;
+        }
+    
+        return <div>Loading...!</div>;
+      }
     }
+    
+    ReactDOM.render(<App />, document.querySelector("#root"));
+    
 
 
-}
-
-ReactDOM.render(
-    <App />,
-    document.querySelector('#root')
-);
 
 // The difference between state and props is
 // state is a JS object that contains some amount of data 
