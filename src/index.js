@@ -3,6 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 // const in the App component
 // When class is created we are cerating a new class in js that has
 // one method assigned that is the render method
@@ -71,7 +72,7 @@ class App extends React.Component {
             // we can take state from one component as a prop down to the child
         }
     
-        return <div>Loading...!</div>;
+        return <Spinner message="Accept location request or die!!" />;
       }
     }
     

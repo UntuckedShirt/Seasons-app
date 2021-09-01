@@ -1,4 +1,5 @@
 import React from 'react';
+import './SeasonDisplay.css'
 
 //below holds key:value pairs
 //the strings below match whats in said the get season const
@@ -34,12 +35,16 @@ const SeasonDisplay = (props) => {
     // const icon = season === 'winter' ? 'snowflake' : 'sun';
     // to display icons use lines below
     //multiline JSX expression
+    
+    //always make sure root element inside compnent has classname equal to
+    // a className version of component name
+
     return (
-        <div>
+        <div className={`season-display ${season}`}>
             
-            <i className={`massive ${iconName} icon`} />
+            <i className={`icon-left massive ${iconName} icon`} />
             <h4>{text}</h4>
-            <i className={`massive ${iconName} icon`} />
+            <i className={`icon-right massive ${iconName} icon`} />
         </div>
     );
 
