@@ -1,5 +1,19 @@
 import React from 'react';
 
+//below holds key:value pairs
+//the strings below match whats in said the get season const
+const seasonConfig = {
+    summer: {
+        text: 'Lets get tan!!',
+        iconName: "sun"
+    },
+    winter: {
+        text: 'Its brick outside!!',
+        iconName: 'snowflake'
+    }
+
+};
+
 // anytime prop is passed into a functional component it shows up 
 // inside of an an obj that is the first arguement of the functional component
 // referesed to as props
@@ -14,10 +28,20 @@ const getSeason = (lat, month) => {
 
 const SeasonDisplay = (props) => {
     const season = getSeason(props.lat, new Date().getMonth());
-    
-
-    return <div>{ }</div>
-    
+    const { text, iconName } = seasonConfig[season]; // {text, iconName}
+    // the statements brlow of redundant
+    // const text = season === 'winter' ? 'Its brick bro!!' : 'Its hot as hell lets go swimming!!'
+    // const icon = season === 'winter' ? 'snowflake' : 'sun';
+    // to display icons use lines below
+    //multiline JSX expression
+    return (
+        <div>
+            
+            <i className={`massive ${iconName} icon`} />
+            <h4>{text}</h4>
+            <i className={`massive ${iconName} icon`} />
+        </div>
+    );
 
 };
 
