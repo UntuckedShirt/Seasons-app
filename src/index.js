@@ -46,6 +46,27 @@ class App extends React.Component {
         );
         
     }
+    
+    renderContent() {
+         //remember to remove semecolons when going from single to multiline statement
+            // to conditionally return JSX we need to add simple if statemnts
+            // below is called conidtional rendering
+            // render method alone is about returning JSX and nothing
+            if (this.state.errorMessage && !this.state.lat) {
+                return <div>Error: {this.state.errorMessage}</div>;
+              }
+          
+              if (!this.state.errorMessage && this.state.lat) {
+                  return <SeasonDisplay lat={this.state.lat} />;
+                  // wea re taking prop from state of app component and passing
+                  // as prop down into the SeasonDisplay
+                  // we can take state from one component as a prop down to the child
+              }
+          
+              return <Spinner message="Accept location request or die!!" />;
+    }
+    
+    
 
     // componentDidUpdate() {
     //     // update comes in the form of claling a setState method
@@ -56,23 +77,14 @@ class App extends React.Component {
     // react says we have to define render!!
     // render is not optional and needs to be defined
     // render is part of the lifecycle method
+    // we have conidtion logic inside of a render function
+    // we will create a helper function
+    // below is an example of a wrap there is no border pink etc
     render() {
-            //remember to remove semecolons when going from single to multiline statement
-            // to conditionally return JSX we need to add simple if statemnts
-            // below is called conidtional rendering
-            // render method alone is about returning JSX and nothing
-        if (this.state.errorMessage && !this.state.lat) {
-          return <div>Error: {this.state.errorMessage}</div>;
-        }
-    
-        if (!this.state.errorMessage && this.state.lat) {
-            return <SeasonDisplay lat={this.state.lat} />;
-            // wea re taking prop from state of app component and passing
-            // as prop down into the SeasonDisplay
-            // we can take state from one component as a prop down to the child
-        }
-    
-        return <Spinner message="Accept location request or die!!" />;
+        return (
+            <div className="border pink">
+                {this.renderContent()}</div>
+        );
       }
     }
     
