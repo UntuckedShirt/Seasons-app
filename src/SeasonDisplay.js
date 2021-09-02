@@ -3,6 +3,8 @@ import './SeasonDisplay.css'
 
 //below holds key:value pairs
 //the strings below match whats in said the get season const
+// config files and helper functions are always at the top
+// funcitonal components are at the bottom
 const seasonConfig = {
     summer: {
         text: 'Lets get tan!!',
